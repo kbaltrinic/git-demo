@@ -1,0 +1,4 @@
+#!/bin/sh
+git checkout master
+git branch -D f1 f2 f3 f4
+git reset --hard start-here 

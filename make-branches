@@ -1,0 +1,51 @@
+#!/bin/sh
+# %s/^git checkout master/git rebase master \rgit checkout master/g
+# %s/^git merge/git merge --no-ff/g
+git checkout master
+git branch -D start-here
+git branch start-here
+
+git branch f1
+echo "text" >> README.md
+git add .
+git commit -m"A commit on master"
+git branch f2
+git checkout f1
+echo "text" > file-1a
+git add .
+git commit -m"Adding file 1a"
+echo "text" > file-1b
+git add .
+git commit -m"Adding file 1b"
+git branch f4
+git checkout master
+git merge f1
+git branch f3
+git checkout f2
+echo "text" > file-2a
+git add .
+git commit -m"Adding file 2a"
+echo "text" > file-2b
+git add .
+git commit -m"Adding file 2b"
+git checkout master
+git merge f2
+git checkout f3
+echo "text" > file-3a
+git add .
+git commit -m"Adding file 3a"
+echo "text" > file-3b
+git add .
+git commit -m"Adding file 3b"
+git checkout master
+git merge f3
+git checkout f4
+echo "text" > file-4a
+git add .
+git commit -m"Adding file 4a"
+echo "text" > file-4b
+git add .
+git commit -m"Adding file 4b"
+git checkout master
+git merge f4
+
